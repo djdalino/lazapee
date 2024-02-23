@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   env: {
     DIRECTUS_ENDPOINT: 'https://directus.area917.ph',
@@ -7,6 +9,10 @@ const nextConfig = {
   },
   images: {
     domains: ['burst.shopifycdn.com'],
+  },
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname, './src/app');
+    return config;
   },
 }
 
