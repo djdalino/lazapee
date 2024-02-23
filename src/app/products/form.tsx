@@ -12,7 +12,7 @@ const initialState: StandardResponse = {
 }
 
 export default function ProductForm() {
-  const ref = useRef(null)
+  const ref = useRef<any>(null)
   const [state, formAction] = useFormState(addProduct, initialState)
 
   useEffect(() => {

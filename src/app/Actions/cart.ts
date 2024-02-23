@@ -3,13 +3,10 @@ import { StandardResponse } from '@/app/Helpers/Responses'
 import { createProduct } from '@/app/Helpers/Products'
 
 const schema = z.object({
-  name: z.string(),
-  price: z.number(),
-  image: z.string(),
-  description: z.string(),
+  productId: z.string(),
 })
 
-export default async function addProduct(
+export default async function addToCart(
   prevState: any,
   formData: FormData
 ): Promise<StandardResponse> {

@@ -2,9 +2,11 @@
 
 import { IProduct } from '@/app/Models/ProductModel'
 import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
+import { FaCartPlus } from "react-icons/fa";
 import { deleteProduct } from '@/app/Helpers/Products'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, {useState, useContext} from 'react'
+import { useContextClient,  } from '../Context/ContextProvider';
 
 interface ProductRowProps {
   product: IProduct
@@ -16,7 +18,12 @@ const ProductRow: React.FC<ProductRowProps> = ({
   removeOptimisticProduct,
 }) => {
   const router = useRouter()
-  const handleViewProduct = (product_id) => {
+  const {cartItems, addToCart} = useContextClient()
+
+  const handleAddToCart = (newItems: any) => {
+    addToCart(newItems)
+  }
+  const handleViewProduct = (product_id: number) => {
     router.push(`/products/${product_id}`)
   }
 
@@ -42,6 +49,13 @@ const ProductRow: React.FC<ProductRowProps> = ({
       <td>{product.price}</td>
       <td>
         <div className='flex space-x-2'>
+        <button
+            className='btn btn-outline btn-info'
+            disabled={!!cartItems?.find((cart: any) => cart.id === product.id)}
+            onClick={() => handleAddToCart(product)}
+          >
+            <FaCartPlus size='2rem'/>
+          </button>
           <button
             className='btn btn-outline btn-info'
             onClick={() => handleViewProduct(product.id)}

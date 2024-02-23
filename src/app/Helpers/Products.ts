@@ -61,6 +61,26 @@ const getProduct = async (
   }
 }
 
+const fetchProducts = async (productIds: number[]) => {
+  try {
+    // Assuming baseApi is defined somewhere in your code
+    const token = await generateAccessToken() // or however you get your token
+    const response = await baseApi.get(`/items/products`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        ids: productIds // Pass the array directly
+      }
+    });
+    const products: any[] = response.data;
+    console.log(products)
+    return products
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
+
 const deleteProduct = async (product_id: number): Promise<void> => {
   try {
     const token = await generateAccessToken()
@@ -77,4 +97,4 @@ const deleteProduct = async (product_id: number): Promise<void> => {
   }
 }
 
-export { getProducts, createProduct, getProduct, deleteProduct }
+export { getProducts, fetchProducts, createProduct, getProduct, deleteProduct }
