@@ -10,8 +10,6 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
 
-  const getCartItems: any = typeof localStorage !== 'undefined' && localStorage.getItem('cart-items') ? JSON.parse(localStorage.getItem('cart-items')) : []
-
   const [optimisticProducts, removeOptimisticProduct] = useOptimistic(
     products,
     (state, removeProductId) => {
