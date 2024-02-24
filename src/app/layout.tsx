@@ -54,7 +54,7 @@ export default function RootLayout({
             </div>
             <div className='navbar-end'>
               <AddCartButton name='' />
-              <Link href='/products'><AddProductButton className='mt-10' name='New Product' /></Link>
+              <Link href='/products'><AddProductButton name='New Product' /></Link>
             </div>
           </div>
           {children}

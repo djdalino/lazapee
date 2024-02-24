@@ -27,7 +27,7 @@ const ProductRow: React.FC<ProductRowProps> = ({
     router.push(`/products/${product_id}`)
   }
 
-  const handleDeleteProduct = async (product_id) => {
+  const handleDeleteProduct = async (product_id: number) => {
     removeOptimisticProduct(product_id)
 
     // Directus: Product Delete

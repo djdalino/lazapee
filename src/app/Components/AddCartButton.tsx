@@ -4,8 +4,8 @@ import { BiCart } from 'react-icons/bi';
 import { useRouter, usePathname } from 'next/navigation'; // Importing from 'next/router' instead of 'next/navigation'
 import { useContextClient } from '../Context/ContextProvider';
 interface CartButtonProps {
-  name: string;
-  onClick: () => void;
+  name?: string;
+  onClick?: () => void;
 }
 
 export function AddCartButton(props: CartButtonProps) {
