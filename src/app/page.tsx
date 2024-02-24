@@ -1,5 +1,5 @@
 import { getProducts } from '@/app/Helpers/Products'
-import ProductList from '@/app/components/ProductList'
+import ProductList from '@/app/Components/ProductList'
 
 export default async function Home() {
   // Directus: Product Lists

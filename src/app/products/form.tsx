@@ -3,7 +3,7 @@
 import { useFormState } from 'react-dom'
 import { StandardResponse } from '@/app/Helpers/Responses'
 import { useEffect, useRef } from 'react'
-import addProduct from '@/app/actions/products'
+import addProduct from '@/app/Actions/products'
 import { SubmitProductButton } from '@/app/products/SubmitProductButton'
 import { Toaster } from '../Components/Toaster'
 
