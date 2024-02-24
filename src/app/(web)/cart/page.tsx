@@ -78,7 +78,7 @@ const Cart = async () => {
                 <p className='text-xl font-semibold mb-5'>Order Summary</p>
                 <div className='flex items-center justify-between w-full'>
                     <p>Subtotal ({updatedCartItems.filter((cart: any) => cart.selected === true).length} Item{updatedCartItems.filter((cart: any) => cart.selected === true).length > 1 ? 's':''}):</p> 
-                    <p>{updatedCartItems.filter((cart: any) => cart.selected === true).reduce((total, item: any) => total + parseFloat(item?.price), 0)}</p>
+                    <p>{updatedCartItems.filter((cart: any) => cart.selected === true).reduce((total:any, item: any) => total + parseFloat(item?.price), 0)}</p>
                 </div>
                 <div className='flex items-center justify-between w-full'>
                     <p>Shipping Fee:</p> 
@@ -86,7 +86,7 @@ const Cart = async () => {
                 </div>
                 <div className='flex items-center justify-between w-full'>
                     <p>Total:</p> 
-                    <p>{updatedCartItems.filter((cart: any) => cart.selected === true).reduce((total, item: any) => total + parseFloat(item?.price), shippingFee)}</p>
+                    <p>{updatedCartItems.filter((cart: any) => cart.selected === true).reduce((total:any, item: any) => total + parseFloat(item?.price), shippingFee)}</p>
                 </div>
                 <div className={`mt-10 ${!disabled ? 'bg-gray-500' : 'bg-blue-500'}  w-full text-center py-3 text-white cur`}>
                     <button className='w-full' onClick={() => console.log({disabled: !disabled})} disabled={!disabled}>Checkout</button>
