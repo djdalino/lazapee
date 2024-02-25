@@ -1,6 +1,5 @@
 'use client'
 
-import { useContextClient } from '@/app/Context/ContextProvider'
 import { BsCartXFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import React, { useEffect, useState} from 'react'
