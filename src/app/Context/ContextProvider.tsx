@@ -5,6 +5,7 @@ interface Item {
   id: number;
   name: string;
   price: number;
+  selected: boolean;
 }
 
 interface ContextType {
@@ -14,6 +15,7 @@ interface ContextType {
   addToCart: (item: Item) => void;
   removeFromCart: (itemId: number, e:any) => void;
   clearCart: () => void;
+  updateSelectedCartItem: (itemId: number) => void;
 }
 
 const Context = createContext<ContextType>({
@@ -22,7 +24,8 @@ const Context = createContext<ContextType>({
   addProducts: () => {},
   addToCart: () => {},
   removeFromCart: () => {},
-  clearCart: () => {}
+  clearCart: () => {},
+  updateSelectedCartItem: () => {}
 });
 
 function ContextProvider({ children }: { children: React.ReactNode }) {
@@ -56,7 +59,7 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
 
     // Check if the item already exists in the cart
     if (!updatedCartItems.some(cartItem => cartItem.id === item.id)) {
-      updatedCartItems.push(item);
+      updatedCartItems.push({...item, selected:false});
       setCartItems(updatedCartItems);
     }
   };
@@ -71,8 +74,17 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     setCartItems([]);
   };
 
+  const updateSelectedCartItem = (itemId: number) => {
+    const findItem = cartItems.find((cart: Item) => cart.id === itemId);
+    const updatedItem = {...findItem, selected: !findItem?.selected}
+    const filterItems = cartItems.filter((cart: Item) => cart.id !== itemId)
+
+    const updatedCartItems: any[] = [...filterItems, updatedItem];
+    setCartItems(updatedCartItems)
+  }
+
   return (
-    <Context.Provider value={{ productItems, addProducts, cartItems, addToCart, removeFromCart, clearCart }}>
+    <Context.Provider value={{ productItems, addProducts, cartItems, addToCart, removeFromCart, clearCart, updateSelectedCartItem }}>
       {children}
     </Context.Provider>
   );
