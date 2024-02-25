@@ -14,6 +14,8 @@ interface CartStore {
   addToCartItem: (item: CartItem) => void;
   removeToCart: (itemId: number) => void;
   selectedToCheckout: (itemId: number) => void;
+  setSelectAllItem: (selected: boolean) => void;
+  removeSelectedItem: () => void;
   resetCart: () => void;
 }
 
@@ -45,6 +47,22 @@ export const cartStore = create<CartStore>((set) => {
         localStorage.setItem('cart', JSON.stringify(updatedCart)); 
         return { cart: updatedCart };
       });
+    },
+    setSelectAllItem: (selected) => {
+      set((state) => {
+        const updatedCart = state.cart.map((cart) => {
+          return {...cart, selected: selected}
+        })
+        localStorage.setItem('cart', JSON.stringify(updatedCart)); 
+        return { cart: updatedCart }
+      })
+    },
+    removeSelectedItem: () => {
+      set((state) => {
+        const updatedCart = state.cart.filter((cart) => cart.selected !== true)
+        localStorage.setItem('cart', JSON.stringify(updatedCart)); 
+        return { cart: updatedCart }
+      })
     },
     resetCart: () => {
       localStorage.removeItem('cart'); 
